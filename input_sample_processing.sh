@@ -17,7 +17,6 @@ WD=$2
 NUMINPUT=$3
 NUMSAM=$4
 PROMOTER=$5
-OUTPUT=$6
 
 ## Access input folder
 
@@ -57,5 +56,5 @@ DONE_INPUT=$(wc -l $WD/logs/blackboard.txt | awk '{ print$1 }')
 
 if [ $DONE_INPUT -eq $NUMSAM ]
 then
-   qsub -N callpeak -o $WD/logs/callpeak /home/sarajorge/PIPECHIP/calling_peaks.sh $WD $INPUT $PROMOTER $OUTPUT $NUMINPUT
+   qsub -N callpeak -o $WD/logs/callpeak /home/sarajorge/PIPECHIP/calling_peaks.sh $WD $INPUT $PROMOTER $NUMINPUT
 fi

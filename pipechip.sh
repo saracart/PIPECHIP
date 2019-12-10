@@ -29,7 +29,6 @@ ANNOTATION=$(grep annotation: $PARAMS | awk '{ print$2 }')
 NUMCHIP=$(grep chip_num: $PARAMS | awk '{ print$2 }')
 NUMINPUT=$(grep input_num: $PARAMS | awk '{ print$2 }')
 PROMOTER=$(grep promotore: $PARAMS | awk '{ print$2  }')
-OUTPUT=$(grep output: $PARAMS | awk '{ print$2  }')
 
 SAMPLES_CHIP=( )
 I=0
@@ -261,6 +260,6 @@ I=1
 
 while [ $I -le $NUMINPUT ]
    do
-   qsub -N input$I -o $WD/logs/input$I /home/sarajorge/PIPECHIP/input_sample_processing.sh $I $WD $NUMINPUT $NUMSAM $PROMOTER $OUTPUT
+   qsub -N input$I -o $WD/logs/input$I /home/sarajorge/PIPECHIP/input_sample_processing.sh $I $WD $NUMINPUT $NUMSAM $PROMOTER
    ((I++))
 done

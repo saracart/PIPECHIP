@@ -17,7 +17,6 @@ WD=$2
 NUMCHIP=$3
 NUMSAM=$4
 PROMOTER=$5
-OUTPUT=$6
 
 ##Access chip folder 
 
@@ -57,5 +56,5 @@ DONE_CHIP=$(wc -l $WD/logs/blackboard.txt | awk '{ print$1  }')
 
 if [ $DONE_CHIP -eq $NUMSAM ]
 then
-   qsub -N callpeak -o $WD/logs/callpeak /home/sarajorge/PIPECHIP/calling_peaks.sh $WD $PROMOTER $OUTPUT $NUMCHIP
+   qsub -N callpeak -o $WD/logs/callpeak /home/sarajorge/PIPECHIP/calling_peaks.sh $WD $PROMOTER $NUMCHIP
 fi
