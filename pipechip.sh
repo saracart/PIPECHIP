@@ -138,13 +138,13 @@ while true; do
         ## Copying the genome.fa file
 
         cd $WD/annotation
-        cp $GENOME annotation.fa; break;;
+        cp $GENOME annotation.gtf; break;;
 
         [Nn]* ) echo "The reference genome will be downloaded from ensemble"
 
         cd $WD/annotation
-        wget -O annotation.fa.gz $GENOME
-        gunzip annotation.fa.gz; break;;
+        wget -O annotation.gtf.gz $GENOME
+        gunzip annotation.gtf.gz; break;;
      esac
 done
 

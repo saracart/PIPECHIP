@@ -3,20 +3,19 @@
 ## Contact: saracartanmoya@gmail.com or jodombar@gmail.com
 
 #$ -S /bin/bash
-#$ -N chip_sample_processing
+#$ -N calling_peaks
 #$ -V
 #$ -cwd
 #$ -j yes
-#$ -o chip_sample_processing
+#$ -o calling_peaks
 
 #! /bin/bash
 
 ## Loading parameters
 
 WD=$1
-NUMCHIP=$3
-PROMOTER=$2
-
+NC=$2
+PROMOTER=$3
 
 #Callpeak function
 
@@ -28,20 +27,18 @@ I=1
 
 while [ $I -le $NC ]
 do
-   macs2 callpeak -t $WD/samples/chip/chip$I/chip_sorted_${I}.bam -c $WD/samples/input/input$I/input_sorted_${I}.bam -n 'peaks_$I' --outdir . -f BAM
+   macs2 callpeak -t $WD/samples/chip/chip$I/chip_sorted_${I}.bam -c $WD/samples/input/input$I/input_sorted_${I}.bam -n 'peaks_'$I --outdir . -f BAM
    ((I++))
 done
 
 ## HOMER for finding motifs
 
-while [ $I -le $NC ]
-do
-   findMotifsGenome.pl peaks_{$I}_summits.bed tair10 ./HOMER_$I -size 65
-   ((I++))
-done
+cd $WD
+
+qsub -N HOMER -o $WD/logs/HOMER /home/sarajorge/PIPECHIP/HOMER.sh $WD $NC
 
 
 ## Rscript
 
-   qsub -N peak_processing.R -o $WD/logs/peak_processing /home/sarajorge/PIPECHIP/scriptR.sh peaks1_peaks.narrowpeak peaks2_peaks.narrowPeak $PROMOTER 
+Rscript peak_analysis.R $WD/results/peaks1_peaks.narrowpeak $WD/results/peaks2_peaks.narrowPeak $WD/R_results $PROMOTOR
 

@@ -6,7 +6,7 @@
 
 ##Setting woring directory
 
-setwd(dir = home/sarajorge/PIPECHIP/R_results)
+setwd(dir = "/home/sarajorge/PIPECHIP/R_results")
 
 ## Loading arguments
 
