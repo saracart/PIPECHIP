@@ -28,7 +28,10 @@ GENOME=$(grep genome: $PARAMS | awk '{ print$2 }')
 ANNOTATION=$(grep annotation: $PARAMS | awk '{ print$2 }')
 NUMCHIP=$(grep chip_num: $PARAMS | awk '{ print$2 }')
 NUMINPUT=$(grep input_num: $PARAMS | awk '{ print$2 }')
-PROMOTER=$(grep promotore: $PARAMS | awk '{ print$2  }')
+PROMOTER=$(grep promoter: $PARAMS | awk '{ print$2  }')
+RSCRIPT=$(grep rscript: $PARAMS | awk '{ print$2  }')
+OUTPUT=$(grep output: $PARAMS | awk '{ print$2  }')
+SAMPLEDIR=$(grep sample_dir: $PARAMS | awk '{ print$2  }')
 
 SAMPLES_CHIP=( )
 I=0
@@ -59,6 +62,8 @@ echo NUMBER_CHIP_SAMPLES=$NUMCHIP
 echo NUMBER_INPUT_SAMPLES=$NUMINPUT
 echo PROMOTER=$PROMOTER
 echo OUTPUT=$OUTPUT
+echo RSCRIPT=$RSCRIPT
+echo SAMPLEDIR=$SAMPLEDIR
 
 I=0
 
@@ -249,7 +254,7 @@ I=1
 
 while [ $I -le $NUMCHIP ]
 do
-   qsub -N chip$I -o $WD/logs/chip$I /home/sarajorge/PIPECHIP/chip_sample_processing.sh $I $WD $NUMCHIP $NUMSAM $PROMOTER $OUTPUT
+   qsub -N chip$I -o $WD/logs/chip$I /home/sarajorge/PIPECHIP/chip_sample_processing.sh $I $WD $NUMCHIP $NUMSAM $PROMOTER $OUTPUT $RSCRIPT $SAMPLEDIR
    ((I++))
 
 done
@@ -260,6 +265,6 @@ I=1
 
 while [ $I -le $NUMINPUT ]
    do
-   qsub -N input$I -o $WD/logs/input$I /home/sarajorge/PIPECHIP/input_sample_processing.sh $I $WD $NUMINPUT $NUMSAM $PROMOTER
+   qsub -N input$I -o $WD/logs/input$I /home/sarajorge/PIPECHIP/input_sample_processing.sh $I $WD $NUMINPUT $NUMSAM $PROMOTER $OUTPUT $RSCRIPT $SAMPLEDIR
    ((I++))
 done

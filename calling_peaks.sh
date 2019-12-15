@@ -16,12 +16,14 @@
 WD=$1
 NC=$2
 PROMOTER=$3
-
+OUTPUT=$4
+RSCRIPT=$5
+SAMPLEDIR=$6
 #Callpeak function
 
 cd $WD/results
 
-##Macs2 for creating the peakAnnotation file
+## Macs2 for creating the peakAnnotation file
 
 I=1
 
@@ -31,14 +33,20 @@ do
    ((I++))
 done
 
+## Rscript
+cp $SAMPLEDIR/functional_analysis.R $WD/results
+Rscript functional_analysis.R $WD/results/peaks_1_peaks.narrowPeak $WD/results/peaks_2_peaks.narrowPeak $PROMOTER $WD/R_results ./
+
+
 ## HOMER for finding motifs
 
-cd $WD
+cd $WD/results
 
-qsub -N HOMER -o $WD/logs/HOMER /home/sarajorge/PIPECHIP/HOMER.sh $WD $NC
+I=1
 
-
-## Rscript
-
-Rscript peak_analysis.R $WD/results/peaks1_peaks.narrowpeak $WD/results/peaks2_peaks.narrowPeak $WD/R_results $PROMOTOR
+while [ $I -le $NC ]
+do
+   findMotifsGenome.pl peaks_${I}_summits.bed tair10 ./HOMER_$I -size 65
+   ((I++))
+done
 
