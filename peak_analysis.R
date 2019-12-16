@@ -5,7 +5,7 @@
 
 ##Setting woring directory
 
-setwd(dir = home/sarajorge/PIPECHIP/R_results)
+setwd(directory)
 
 ## Loading arguments
 
@@ -14,6 +14,10 @@ args <- commandArgs(trailingOnly = TRUE)
 input.file.name1 <- args[[1]]
 input.file.name2 <- args[[2]]
 promoter.length <- as.numeric(args[[3]])
+directory <- args[[4]]
+
+
+setwd(directory)
 
 library(ChIPseeker)
 library(TxDb.Athaliana.BioMart.plantsmart28)
@@ -27,19 +31,20 @@ library("pathview")
 
 ## Reading peak file
 
-peaks1 <- readPeakFile(peakfile = "Peaks1_peaks.narrowPeak",header=FALSE)
+peaks1 <- readPeakFile(peakfile = input.file.name1,header=FALSE)
 head(peaks1)
-peaks2 <- readPeakFile(peakfile = "Peaks2_peaks.narrowPeak",header=FALSE)
+peaks2 <- readPeakFile(peakfile = "input.file.name2",header=FALSE)
 head(peaks2)
 peaks <- intersect(peaks1, peaks2)
 head(peaks)
+dim(peaks)
 
 ## Defining the region that is considered as a promoter. 
 ## Normaly de region contaions a 1000 pb upstream and downstream the TSS
 
 promoter <- getPromoters(TxDb=txdb, 
-                         upstream=-1000, 
-                         downstream=1000)
+                         upstream=-promoter.length, 
+                         downstream=promoter.length)
 
 
 ## Checking the number of genes from de A.Thaliana genome. It should have 33602 genes
@@ -52,13 +57,15 @@ length(genes_names)
 ## Annotating peaks
 
 peakanno <- annotatePeak(peak = peaks, 
-                         tssRegion=c(-1000, 1000),
+                         tssRegion=c(-promoter.length, promoter.length),
                          TxDb=txdb)
 
 ## Binding sites in specific regions of the genome
 
 plotAnnoPie(peakanno)
 vennpie(peakanno)
+
+plotAnnoBar(peakanno)
 
 ## Distribution of genomic loci relative to TSS
 
@@ -87,6 +94,7 @@ ego <- enrichGO(gene = gene.set, OrgDb = org.At.tair.db, ont = "BP", pvalueCutof
 ego.res <- as.data.frame(ego)
 head(ego.res)
 
+dotplot(ego)
 barplot(ego, showCategory=13)
 emapplot(ego, showCategory = 13)
 
@@ -98,6 +106,7 @@ kk
 kk.res <- as.data.frame(kk)
 head(kk.res)
 
+kk.ID<-kk.res$ID
 
 my.universe <- rep(0,length(genes_names))
 names(my.universe) <- genes_names
@@ -105,4 +114,6 @@ my.universe[gene.set] <- 1
 my.universe
 
 
-SAUR10.pathway <- pathview(gene.data = my.universe, pathway.id = "ath04075", species = "ath", gene.idtype = "TAIR")
+
+
+pathway.res <- pathview(gene.data = my.universe, pathway.id = kk.ID, species = "ath", gene.idtype = "TAIR")
