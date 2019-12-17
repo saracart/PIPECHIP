@@ -57,7 +57,11 @@ echo "chip${SAM_ID} DONE" >> $WD/logs/blackboard.txt
 
 DONE_CHIP=$(wc -l $WD/logs/blackboard.txt | awk '{ print$1  }')
 
+echo "Chip samples have been processed"
+
 if [ $DONE_CHIP -eq $NUMSAM ]
 then
    qsub -N callpeak -o $WD/logs/callpeak /home/sarajorge/PIPECHIP/calling_peaks.sh $WD $NUMCHIP $PROMOTER $OUTPUT $RSCRIPT $SAMPLEDIR
 fi
+
+echo "When all the samples are done the calling peaks file will be submmited"

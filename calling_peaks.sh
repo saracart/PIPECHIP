@@ -26,6 +26,8 @@ cd $WD/results
 
 ## Macs2 for creating the peakAnnotation file
 
+echo "Finding the peaks"
+
 I=1
 
 while [ $I -le $NC ]
@@ -36,10 +38,12 @@ done
 
 ## Rscript
 
+echo "starting the peaks analysis"
 
 cp $SAMPLEDIR/$RSCRIPT $WD/results
 Rscript peak_analysis.R $WD/results/peaks_1_peaks.narrowPeak $WD/results/peaks_2_peaks.narrowPeak $PROMOTER ./
 
+echo "The plots and the target genes will be saved in the folder results"
 
 ## HOMER for finding motifs
 
@@ -53,3 +57,4 @@ do
    ((I++))
 done
 
+echo "DONE"

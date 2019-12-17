@@ -57,7 +57,13 @@ echo "input$INPUT DONE" >> $WD/logs/blackboard.txt
 
 DONE_INPUT=$(wc -l $WD/logs/blackboard.txt | awk '{ print$1 }')
 
+echo "Input samples have been processed"
+
+
 if [ $DONE_INPUT -eq $NUMSAM ]
 then
    qsub -N callpeak -o $WD/logs/callpeak /home/sarajorge/PIPECHIP/calling_peaks.sh $WD $NUMINPUT $PROMOTER $OUTPUT $RSCRIPT $SAMPLEDIR
+   echo "submitting calling_peaks file"
 fi
+
+
