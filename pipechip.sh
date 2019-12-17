@@ -165,7 +165,7 @@ while true; do
      read -p "Are your samples already downloaded?" yn
      case $yn in
 
-        [Yy]* ) echo "Samples must be at $WD/test"
+        [Yy]* ) echo "Samples must be at $WD/../test"
 
 	## Copying the CHIP samples
 
@@ -174,6 +174,7 @@ while true; do
 
         while [ $I -lt $NUMCHIP ]
         do
+	cd $WD/samples/chip
         cp ${SAMPLES_CHIP[$I]} chip$(($I+1))/chip$(($I+1)).fastq
         cd chip$(($I+1))
 	((I++))
@@ -186,6 +187,7 @@ while true; do
 
         while [ $I -lt $NUMINPUT ]
         do
+	cd $WD/samples/input
         cp ${SAMPLES_INPUT[$I]} input$(($I+1))/input$(($I+1)).fastq
         cd input$(($I+1))
 	((I++))

@@ -19,6 +19,7 @@ PROMOTER=$3
 OUTPUT=$4
 RSCRIPT=$5
 SAMPLEDIR=$6
+
 #Callpeak function
 
 cd $WD/results
@@ -34,8 +35,10 @@ do
 done
 
 ## Rscript
-cp $SAMPLEDIR/functional_analysis.R $WD/results
-Rscript functional_analysis.R $WD/results/peaks_1_peaks.narrowPeak $WD/results/peaks_2_peaks.narrowPeak $PROMOTER $WD/R_results ./
+
+
+cp $SAMPLEDIR/$RSCRIPT $WD/results
+Rscript peak_analysis.R $WD/results/peaks_1_peaks.narrowPeak $WD/results/peaks_2_peaks.narrowPeak $PROMOTER ./
 
 
 ## HOMER for finding motifs

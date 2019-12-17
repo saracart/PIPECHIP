@@ -1,14 +1,17 @@
-working_directory: /home/sarajorge/PIPECHIP/tarea1_SHL
+working_directory: /home/sarajorge/PIPECHIP/FRUITFULL_copiado
 number_of_samples: 4
-genome: ftp://ftp.ensemblgenomes.org/pub/release-45/plants/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz
-annotation: ftp://ftp.ensemblgenomes.org/pub/release-45/plants/gtf/arabidopsis_thaliana/Arabidopsis_thaliana.TAIR10.45.gtf.gz
+genome: /home/sarajorge/PIPECHIP/test/genome.fa
+annotation: /home/sarajorge/PIPECHIP/test/annotation.gtf
 chip_num: 2
 input_num: 2
+rscript: peak_analysis.R
+output: ./
 
-chip_1: SRR6111265
-chip_2: SRR6111266
-input_1: SRR6111267
-input_2: SRR6111268
+
+chip_1: /home/sarajorge/PIPECHIP/test/chip1.fastq
+chip_2: /home/sarajorge/PIPECHIP/test/chip2.fastq
+input_1: /home/sarajorge/PIPECHIP/test/input1.fastq
+input_2: /home/sarajorge/PIPECHIP/test/input2.fastq
 
 
 sample_dir: /home/sarajorge/PIPECHIP/test
