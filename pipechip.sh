@@ -54,6 +54,9 @@ done
 
 ##Printing variable values
 
+echo "printing loaded variables" 
+
+
 echo WORKING_DIRECTORY=$WD
 echo NUMBER_OF_SAMPLES=$NUMSAM
 echo GENOME=$GENOME
@@ -83,6 +86,8 @@ done
 
 
 ##Generate the working directory
+
+echo "Generating the needed folders in the" $WD
 
 mkdir $WD
 cd $WD
@@ -153,11 +158,16 @@ while true; do
      esac
 done
 
+echo "The genome and the annotation are already downloaded and saved in the genome and annotation folder"
 
 ## Building reference index
 
+echo "Building the reference index"
+
 cd $WD/genome
 bowtie2-build genome.fa index
+
+echo "Index built"
 
 ## Download/copy samples into the $WD/samples and name changing
 
@@ -249,6 +259,7 @@ while true; do
      esac
 done
 
+echo "Your chip and input samples are already downloaded"
 
 ## Synch point 
 
@@ -270,3 +281,5 @@ while [ $I -le $NUMINPUT ]
    qsub -N input$I -o $WD/logs/input$I /home/sarajorge/PIPECHIP/input_sample_processing.sh $I $WD $NUMINPUT $NUMSAM $PROMOTER $OUTPUT $RSCRIPT $SAMPLEDIR
    ((I++))
 done
+
+echo "The samples have been subbmited to the queue to be processed"
