@@ -91,10 +91,10 @@ This pipeline performs a ChIP-Seq analysis along with a functional analysis of t
 The first part of this pipeline performs the ChIP-Seq analysis which has already been explained early on this README file.
 
 ### Functional Analysis
-Once the peaks are obtained they will be saved as peaks_n_peak.narrowPeak, among other files. These narrowPeak files will hold all the vital information for the analysys. In order to extract all the information from it, the script peak_analysis.R will be launched to the queue. To understand what it is done in this script, we invite you to open it and read the instructions and comment writen in hash. Please, make sure depending on the number of samples, one script or another will be launched (if you have more than 3 samples, thus 3 different .narroPeak files, check the comments on the Rscript).
+Once the peaks are obtained they will be saved as peaks_n_peak.narrowPeak, among other files. These narrowPeak files will hold all the vital information for the analysys. In order to extract all the information from it, the script `peak_analysis.R` will be launched to the queue. To understand what it is done in this script, we invite you to open it and read the instructions and comment writen in hash. Please, make sure depending on the number of samples, one script or another will be launched (if you have more than 3 samples, thus 3 different .narroPeak files, check the comments on the Rscript).
 
 ### Motifs finding
-To clarify to which family does the TF belong, a HOMER analysis using the findMotifsGenome.pl will be perform. It will perform as many analysis as summit.bed files there are. Each analysis will be saved into a folder named HOMER_n (n as the number of analysis depending on the number of peaks) inside the results folder.
+To clarify to which family does the TF belong, a `HOMER` analysis using the findMotifsGenome.pl will be perform. It will perform as many analysis as summit.bed files there are. Each analysis will be saved into a folder named HOMER_n (n as the number of analysis depending on the number of peaks) inside the results folder.
 
 ## Example given
 For further information about this tool you may like to perform the analysis using the example samples. You may find them in the NCBI accession number __GSE115358__. The genome and the annotation used were obtained from ensembl plants.
