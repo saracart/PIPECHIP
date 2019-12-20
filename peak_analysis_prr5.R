@@ -10,7 +10,7 @@
 
 args <- commandArgs(trailingOnly = TRUE)
 
-input.file.name1 <- args[[1]]
+input.file.name <- args[[1]]
 promoter.length <- as.numeric(args[[3]])
 directory <- args[[4]]
 
@@ -29,15 +29,15 @@ library("pathview")
 
 ## Reading peak file
 
-peaks <- readPeakFile(peakfile = "prr5_peaks.narrowPeak",header=FALSE)
+peaks <- readPeakFile(peakfile = input.file.name,header=FALSE)
 head(peaks)
 
 ## Defining the region that is considered as a promoter. 
 ## Normaly de region contaions a 1000 pb upstream and downstream the TSS
 
 promoter <- getPromoters(TxDb=txdb, 
-                         upstream=-1000, 
-                         downstream=1000)
+                         upstream=-promoter.length, 
+                         downstream=promoter.length)
 
 
 ## Checking the number of genes from de A.Thaliana genome. It should have 33602 genes
