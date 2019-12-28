@@ -1,10 +1,11 @@
-working_directory: /home/sarajorge/PIPECHIP/FRUITFULLses
+working_directory: /home/sarajorge/PIPECHIP/FRUITFULLfkjabfguiear
 number_of_samples: 4
 genome: ftp://ftp.ensemblgenomes.org/pub/release-45/plants/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz
 annotation: ftp://ftp.ensemblgenomes.org/pub/release-45/plants/gtf/arabidopsis_thaliana/Arabidopsis_thaliana.TAIR10.45.gtf.gz
 chip_num: 2
 input_num: 2
-rscript: peak_analysis.R
+rscript_1: peak_analysis_1.R
+rscript_2: peak_analysis_2.R
 output: ./
 
 chip_1: SRR3288009
