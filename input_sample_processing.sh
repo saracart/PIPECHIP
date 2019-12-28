@@ -10,6 +10,7 @@
 #$ -o input_sample_processing
 
 #! /bin/bash
+
 ##Reading parameters
 
 INPUT=$1
@@ -18,8 +19,9 @@ NUMINPUT=$3
 NUMSAM=$4
 PROMOTER=$5
 OUTPUT=$6
-RSCRIPT=$7
-SAMPLEDIR=$8
+RSCRIPT_1=$7
+RSCRIPT_2=$8
+SAMPLEDIR=$9
 
 ## Access input folder
 
@@ -62,7 +64,7 @@ echo "Input samples have been processed"
 
 if [ $DONE_INPUT -eq $NUMSAM ]
 then
-   qsub -N callpeak -o $WD/logs/callpeak /home/sarajorge/PIPECHIP/calling_peaks.sh $WD $NUMINPUT $PROMOTER $OUTPUT $RSCRIPT $SAMPLEDIR
+   qsub -N callpeak -o $WD/logs/callpeak $WD/../calling_peaks.sh $WD $NUMINPUT $PROMOTER $OUTPUT $RSCRIPT_1 $RSCRIPT_2 $SAMPLEDIR
    echo "submitting calling_peaks file"
 fi
 
