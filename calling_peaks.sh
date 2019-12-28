@@ -17,8 +17,9 @@ WD=$1
 NC=$2
 PROMOTER=$3
 OUTPUT=$4
-RSCRIPT=$5
-SAMPLEDIR=$6
+RSCRIPT_1=$5
+RSCRIPT_2=$6
+SAMPLEDIR=$7
 
 #Callpeak function
 
@@ -38,10 +39,17 @@ done
 
 ## Rscript
 
-echo "starting the peaks analysis"
-
-cp $SAMPLEDIR/$RSCRIPT $WD/results
-Rscript peak_analysis.R $WD/results/peaks_1_peaks.narrowPeak $WD/results/peaks_2_peaks.narrowPeak $PROMOTER ./
+if [ $NC -eq 2 ]
+then
+	cd $WD/results
+	cp $SAMPLEDIR/$RSCRIPT_2 $WD/results
+	Rscript $RSCRIPT_2 peaks_1_peaks.narrowPeak peaks_2_peaks.narrowPeak $PROMOTER $WD/results
+elif [ $NC -eq 1 ]
+then
+	cd $WD/results
+	cp $SAMPLEDIR/$RSCRIPT_1 $WD/results
+	Rscript $RSCRIPT_1 peaks_1_peaks.narrowPeak $PROMOTER $WD/results
+fi
 
 echo "The plots and the target genes will be saved in the folder results"
 
