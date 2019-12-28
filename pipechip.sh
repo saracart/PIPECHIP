@@ -7,8 +7,8 @@
 
 if [ $# -eq 0 ]
    then
-    echo "This pipeline analysisi Chip Seq data."
-    echo "Usage: piperna <param_file>"
+    echo "This pipeline analyses Chip Seq data."
+    echo "Usage: pipechip <param_file>"
     echo ""
     echo "param_file: File with the parameters specification. Please, check params.sh in the test folder for an example"
     echo ""
@@ -29,7 +29,8 @@ ANNOTATION=$(grep annotation: $PARAMS | awk '{ print$2 }')
 NUMCHIP=$(grep chip_num: $PARAMS | awk '{ print$2 }')
 NUMINPUT=$(grep input_num: $PARAMS | awk '{ print$2 }')
 PROMOTER=$(grep promoter: $PARAMS | awk '{ print$2  }')
-RSCRIPT=$(grep rscript: $PARAMS | awk '{ print$2  }')
+RSCRIPT_1=$(grep rscript_1: $PARAMS | awk '{ print$2  }')
+RSCRIPT_2=$(grep rscript_2: $PARAMS | awk '{ print$2  }')
 OUTPUT=$(grep output: $PARAMS | awk '{ print$2  }')
 SAMPLEDIR=$(grep sample_dir: $PARAMS | awk '{ print$2  }')
 
@@ -65,8 +66,10 @@ echo NUMBER_CHIP_SAMPLES=$NUMCHIP
 echo NUMBER_INPUT_SAMPLES=$NUMINPUT
 echo PROMOTER=$PROMOTER
 echo OUTPUT=$OUTPUT
-echo RSCRIPT=$RSCRIPT
+echo RSCRIPT_1=$RSCRIPT_1
+echo RSCRIPT_2=$RSCRIPT_2
 echo SAMPLEDIR=$SAMPLEDIR
+
 
 I=0
 
@@ -135,7 +138,6 @@ while true; do
 	gunzip genome.fa.gz; break;;
      esac
 done
-
 
 ## Download annotation
 
@@ -261,13 +263,15 @@ done
 
 echo "Your chip and input samples are already downloaded"
 
-## Synch point 
+## SYNCH POINT
+
+## Chip processing
 
 I=1
 
 while [ $I -le $NUMCHIP ]
 do
-   qsub -N chip$I -o $WD/logs/chip$I /home/sarajorge/PIPECHIP/chip_sample_processing.sh $I $WD $NUMCHIP $NUMSAM $PROMOTER $OUTPUT $RSCRIPT $SAMPLEDIR
+   qsub -N chip$I -o $WD/logs/chip$I $WD/../chip_sample_processing.sh $I $WD $NUMCHIP $NUMSAM $PROMOTER $OUTPUT $RSCRIPT_1 $RSCRIPT_2 $SAMPLEDIR
    ((I++))
 
 done
@@ -278,7 +282,7 @@ I=1
 
 while [ $I -le $NUMINPUT ]
    do
-   qsub -N input$I -o $WD/logs/input$I /home/sarajorge/PIPECHIP/input_sample_processing.sh $I $WD $NUMINPUT $NUMSAM $PROMOTER $OUTPUT $RSCRIPT $SAMPLEDIR
+   qsub -N input$I -o $WD/logs/input$I $WD/../input_sample_processing.sh $I $WD $NUMINPUT $NUMSAM $PROMOTER $OUTPUT $RSCRIPT_1 $RSCRIPT_2 $SAMPLEDIR
    ((I++))
 done
 
