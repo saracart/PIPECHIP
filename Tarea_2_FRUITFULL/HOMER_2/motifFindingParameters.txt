@@ -1,0 +1,1 @@
+cmd = Picos_2_summits.bed tair10 HOMER_2/ -size 65
