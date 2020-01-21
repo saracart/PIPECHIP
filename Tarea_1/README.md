@@ -25,9 +25,9 @@ already downloaded the refference genome, the annotatio and samples and another 
 ## Params files
 __PLEASE NOTICE THAT THIS TUTORIAL INCLUDES A `test` FOLDER WHERE THE PARAMS FILE IS AVAILABLE. PLEASE DECIDE WHETER YOU HAVER OR NOT DOWONLOADED YOUR REFFERENCE GENOME, ANNOTATION AND SAMPLES.__
 
-__Please, when reading this section, take into account that all refferences to copied parameters (genome, annotation or samples) are performed using de script params_cp.sh__
+__Please, when reading this section, take into account that all refferences to copied parameters (genome, annotation or samples) are performed using de script params_cp.txt__
 
-In this section each parameter from the `params.sh` file is explained. Please read this section carefully in order to perform your analysis succesfully. __PLEASE MAKE SURE YOU LEAVE A SPACE BETWEEN THE `:` AND THE BEGINING OF THE PARAMETER IN THE PARAMS FILE!!__
+In this section each parameter from the `params.txt` or `params_cp.txt` file is explained. Please read this section carefully in order to perform your analysis succesfully. __PLEASE MAKE SURE YOU LEAVE A SPACE BETWEEN THE `:` AND THE BEGINING OF THE PARAMETER IN THE PARAMS FILE!!__
 
 - `Working_directory`: This parameter stablishes the directory where the analysis will be performed. We strongly reccommend the user to set it by default to the `$HOME` and create a folder called PIPECHIP (this is a suggestion) where you are going to paste the scripts and a folder called test where params file will be added. After that, add the right path to create the correct folder. In the example given the working directory is `/home/sarajorge/PIPECHIP/FRUITFULL` which means it will create a folder named `FRUITFULL` inside the PIPECHIP folder (__already created before the analysis inside the `$HOME`__).
 
