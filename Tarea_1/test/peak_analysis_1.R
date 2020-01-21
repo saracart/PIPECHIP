@@ -1,4 +1,4 @@
-## Determinación dianas de transcripción para el FT
+## Finding targets for TF
 
 ## Autor: Sara Cartan Moya y Jorge Domínguez Barragán
 ## Fecha: November 2019
@@ -11,8 +11,8 @@
 args <- commandArgs(trailingOnly = TRUE)
 
 input.file.name <- args[[1]]
-promoter.length <- as.numeric(args[[3]])
-directory <- args[[4]]
+promoter.length <- as.numeric(args[[2]])
+directory <- args[[3]]
 
 
 setwd(directory)
