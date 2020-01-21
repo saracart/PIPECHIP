@@ -1,4 +1,4 @@
-## Determinación dianas de transcripción para el FT
+## Findinf targets for TF
 
 ## Autor: Sara Cartan Moya y Jorge Domínguez Barragán
 ## Fecha: November 2019
