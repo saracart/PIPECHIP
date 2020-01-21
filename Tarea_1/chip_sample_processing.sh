@@ -18,8 +18,9 @@ NUMCHIP=$3
 NUMSAM=$4
 PROMOTER=$5
 OUTPUT=$6
-RSCRIPT=$7
-SAMPLEDIR=$8
+RSCRIPT_1=$7
+RSCRIPT_2=$8
+SAMPLEDIR=$9
 
 ##Access chip folder 
 
@@ -61,7 +62,7 @@ echo "Chip samples have been processed"
 
 if [ $DONE_CHIP -eq $NUMSAM ]
 then
-   qsub -N callpeak -o $WD/logs/callpeak /home/sarajorge/PIPECHIP/calling_peaks.sh $WD $NUMCHIP $PROMOTER $OUTPUT $RSCRIPT $SAMPLEDIR
+   qsub -N callpeak -o $WD/logs/callpeak /home/sarajorge/PIPECHIP/calling_peaks.sh $WD $NUMCHIP $PROMOTER $OUTPUT $RSCRIPT_1 $RSCRIPT_2 $SAMPLEDIR
 fi
 
 echo "When all the samples are done the calling peaks file will be submmited"
