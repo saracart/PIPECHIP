@@ -48,7 +48,7 @@ cd $WD/samples/chip/chip${CHIP}
 samtools view -S -b chip${CHIP}.sam > chip${CHIP}.bam
 rm chip${CHIP}.sam
 samtools sort chip${CHIP}.bam -o chip_sorted_${CHIP}.bam
-rm chip$cHIP.bam
+rm chip$CHIP.bam
 samtools index chip_sorted_${CHIP}.bam
 
 
