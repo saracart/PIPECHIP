@@ -62,7 +62,7 @@ echo "Chip samples have been processed"
 
 if [ $DONE_CHIP -eq $NUMSAM ]
 then
-   qsub -N callpeak -o $WD/logs/callpeak /home/sarajorge/PIPECHIP/calling_peaks.sh $WD $NUMCHIP $PROMOTER $OUTPUT $RSCRIPT_1 $RSCRIPT_2 $SAMPLEDIR
+   qsub -N callpeak -o $WD/logs/callpeak $WD/../calling_peaks.sh $WD $NUMCHIP $PROMOTER $OUTPUT $RSCRIPT_1 $RSCRIPT_2 $SAMPLEDIR
 fi
 
 echo "When all the samples are done the calling peaks file will be submmited"
