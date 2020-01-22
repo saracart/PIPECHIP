@@ -1,6 +1,9 @@
 Authors: Sara Cartan Moya & Jorge Domínguez Barragán
+
 Date: December 2019
+
 Univeristy of Seville - Bioinformatic and Genomic Analysis (Biochemistry Degree).
+
 Contact: saracartanmoya@gmail.com & jodombar@gmail.com
 
 This GitHub repository contains two different folders in order to present both task 1 and 2 for Bioinformatics and Genomic Analysis subject 
